@@ -50,7 +50,15 @@
 \vspace{3mm}
 
 % Problem 1vii
-\noindent vii. $f(n) = e^{\cos x} \textrm{ , } g(n) = \lg x$
+\noindent vii. $f(n) = e^{\cos n} \textrm{ , } g(n) = \lg n$
+
+\vspace{3mm}
+
+\indent This problem is a bit confusing because you need to consider the range of the $\cos n$ function. Since the $\cos$ function has a range of $-1 \le \cos n \le 1$, that implies that the range of $e^{\cos n}$ is $\frac{1}{e} \le e^{\cos n} \le e$ and that f(n) is actually constant time with respect to the input.
+
+\indent $g(n) = \lg n \implies g(n)$ is logarithmic
+
+\indent Since logarithmic dominates constant time $\implies \boxed{f  = O(g)}$
 
 \vspace{3mm}
 
@@ -61,6 +69,12 @@
 
 % Problem 1ix
 \noindent ix. $f(n) = \sqrt{4n^2 - 12n + 9} \textrm{ , } g(n) = n^{\frac{3}{2}}$
+
+\vspace{3mm}
+
+\indent $f(n) = \sqrt{4n^2 - 12n + 9} = \sqrt{(2n-3)^2} = 2n-3 \implies f(n)$ is linear
+\indent $g(n) = n^{\frac{3}{2}} \implies g(n)$ is more than linear, but less than quadratic.
+\indent Since f(n) and g(n) are both polynomial, but g(n) has a higher power than f(n) $\implies \boxed{f  = O(g)}$
 
 \vspace{3mm}
 
