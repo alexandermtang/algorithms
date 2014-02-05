@@ -1,5 +1,7 @@
 \documentclass[11pt]{article}
 
+\usepackage{amsmath}
+
 \title{Design \& Analysis of Algorithms HW1}
 \author{Craig Perkins, Alex Tang, Steve Grzenda}
 \date{}
@@ -8,6 +10,70 @@
 \maketitle
 
 \section*{Problem 1}
+
+% Problem 1i
+\noindent i.  $f(n) = \sqrt{2^{7x}} \textrm{ , } g(n) = \lg (7^{2x})$
+
+\vspace{3mm}
+
+\indent $f(n) = \sqrt{2^{7x}} = (2^{7x})^{\frac{1}{2}} = 2^{\frac{7}{2}x} = (2^{\frac{7}{2}})^x = a^x \implies f(n)$ is exponential
+
+\indent $g(n) = \lg (7^{2x}) = 2x\lg (7) = (2\lg 7)x = cx \implies g(n)$ is linear
+
+\indent Since f(n) is exponential and g(n) is linear $\implies \boxed{f  = \Omega(g)}$
+
+\vspace{3mm}
+
+% Problem 1ii
+\noindent ii. $f(n) = 2^{n\ln n} \textrm{ , } g(n) = n!$
+
+\vspace{3mm}
+
+% Problem 1iii
+\noindent iii. $f(n) = \lg (\lg ^{*}n) \textrm{ , } g(n) = \lg ^*(\lg n)$
+
+\vspace{3mm}
+
+% Problem 1iv
+\noindent iv. $f(n) = \frac{\lg n^2}{n} \textrm{ , } g(n) = \lg ^*n$
+
+\vspace{3mm}
+
+% Problem 1v
+\noindent v. $f(n) = 2^n \textrm{ , } g(n) = n^{\lg n}$
+
+\vspace{3mm}
+
+% Problem 1vi
+\noindent vi. $f(n) = 2^{\sqrt{\lg n}} \textrm{ , } g(n) = n(\lg n)^3$
+
+\vspace{3mm}
+
+% Problem 1vii
+\noindent vii. $f(n) = e^{\cos x} \textrm{ , } g(n) = \lg x$
+
+\vspace{3mm}
+
+% Problem 1viii
+\noindent viii. $f(n) =  \lg n^2 \textrm{ , } g(n) = (\lg n)^2$
+
+\vspace{3mm}
+
+% Problem 1ix
+\noindent ix. $f(n) = \sqrt{4n^2 - 12n + 9} \textrm{ , } g(n) = n^{\frac{3}{2}}$
+
+\vspace{3mm}
+
+% Problem 1x
+\noindent x. $f(n) = \sum\limits_{k=1}^n k \textrm{ , } g(n) = (n+2)^2$
+
+\vspace{3mm}
+
+\indent $f(n) = \sum\limits_{k=1}^n k = \frac{n(n+1)}{2} = \frac{1}{2}n^2 + \frac{1}{2}n \implies f(n)$ is quadratic
+
+\indent $g(n) = (n+2)^2 = n^2 + 4n + 4 \implies g(n)$ is quadratic
+
+\indent Since f(n) is quadratic and g(n) is also quadratic $\implies \boxed{f  = \Theta(g)}$
 
 \section*{Problem 2}
 
