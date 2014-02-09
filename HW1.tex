@@ -18,7 +18,7 @@
 \item $f(n) = \sqrt{2^{7n}} \textrm{ , } g(n) = \lg (7^{2n})$ \\ \\
 $f(n) = \sqrt{2^{7n}} = (2^{7n})^{\frac{1}{2}} = 2^{\frac{7}{2}n} = (2^{\frac{7}{2}})^n = a^n \implies f(n)$ is exponential \\
 $g(n) = \lg (7^{2n}) = 2n\lg (7) = (2\lg 7)n = cn \implies g(n)$ is linear \\
-Since f(n) is exponential and g(n) is linear $\implies \boxed{f  = \Omega(g)}$ \\
+Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n))}$ \\
 
 % Problem 1ii
 \item $f(n) = 2^{n\ln n} \textrm{ , } g(n) = n!$ \\ \\
@@ -55,7 +55,7 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f  = \Omega(g)}$ \
 \item $f(n) = e^{\cos n} \textrm{ , } g(n) = \lg n$ \\ \\
  This problem is a bit confusing because you need to consider the range of the $\cos n$ function. Since the $\cos$ function has a range of $-1 \le \cos n \le 1$, that implies that the range of $e^{\cos n}$ is $\frac{1}{e} \le e^{\cos n} \le e$ and that f(n) is actually constant time with respect to the input. \\
  $g(n) = \lg n \implies g(n)$ is logarithmic \\
- Since logarithmic dominates constant time $\implies \boxed{f  = O(g)}$ \\
+ Since logarithmic dominates constant time $\implies \boxed{f(n)  = O(g(n))}$ \\
 
 % Problem 1viii
 \item $f(n) =  \lg n^2 \textrm{ , } g(n) = (\lg n)^2$ \\ \\
@@ -67,13 +67,13 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f  = \Omega(g)}$ \
 \item $f(n) = \sqrt{4n^2 - 12n + 9} \textrm{ , } g(n) = n^{\frac{3}{2}}$ \\ \\
  $f(n) = \sqrt{4n^2 - 12n + 9} = \sqrt{(2n-3)^2} = 2n-3 \implies f(n)$ is linear \\
  $g(n) = n^{\frac{3}{2}} \implies g(n)$ is more than linear, but less than quadratic. \\
- Since f(n) and g(n) are both polynomial, but g(n) has a higher power than f(n) $\implies \boxed{f  = O(g)}$ \\
+ Since f(n) and g(n) are both polynomial, but g(n) has a higher power than f(n) $\implies \boxed{f(n)  = O(g(n))}$ \\
 
 % Problem 1x
 \item $f(n) = \sum\limits_{k=1}^n k \textrm{ , } g(n) = (n+2)^2$ \\ \\
  $f(n) = \sum\limits_{k=1}^n k = \frac{n(n+1)}{2} = \frac{1}{2}n^2 + \frac{1}{2}n \implies f(n)$ is quadratic \\
  $g(n) = (n+2)^2 = n^2 + 4n + 4 \implies g(n)$ is quadratic \\
- Since f(n) is quadratic and g(n) is also quadratic $\implies \boxed{f  = \Theta(g)}$ \\
+ Since f(n) is quadratic and g(n) is also quadratic $\implies \boxed{f(n) = \Theta(g(n))}$ \\
 
 \end{enumerate}
 
