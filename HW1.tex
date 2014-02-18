@@ -109,11 +109,32 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 
 \item True. Let $g = gcd(x, y)$. $x = a_xg y = a_yg$
 
+\item The proof that the numbers of the set S are relatively prime is very similar to that of the Prime Number Theorem. We can show that the first few elements of the set \{2,3,7,42,...\} are coprime and that the n-th element is also coprime because: 
+
+\[s_n \equiv 1 \mod s_0 \]
+\[s_n \equiv 1 \mod s_1\]
+\[ \vdots \]
+\[ s_n \equiv 1 \mod s_{n-1} \]
+
+Since all elements are coprime to those in the set before it there will be no two elements of the set that have a gcd other than 1. 
+
 \end{itemize}
 
 \section*{Problem 6}
 
 \section*{Problem 7}
+
+\begin{itemize}
+
+\item The numbers that are modular multiplicatives of themselves module n are the numbers 1 and $n-1$. 1 is the modulo multiplative inverse of itself because $1\cdot 1 \equiv 1 \mod n$. $n-1$ is the modular multiplicative inverse of itself because $(n-1)(n-1) = n^2-2n+1\equiv 1 \mod n$. 
+
+\item To show that $(n-1)! \equiv -1 \mod n$ and n must be prime, we must first observe that $n-1 \equiv -1 \mod n$. Using this we can see that $(n-1)! \equiv -(n-2)! \mod n$.  From the numbers $2$ to $n-2$ we can also observe that their inverses will also be in the range from $2$ to $n-2$ and be unique. We can be assured that all of 1 to $n-1$ inverse to exist because if a number a is picked from $(1,n-1)$, then gcd(a,n) will be 1 because n is prime and $a < n$. We can also be assured they're unique because assume that a and b are picked from $(1,n-1)$. Then $a\cdot x \equiv 1 \mod n$ and $b\cdot x \equiv 1\mod n$ and $a\cdot x \equiv b \cdot x \mod n$. Dividing the equivalence by x we obtain $a \equiv b \mod n$ and since $1 \le a,b < n$, we can conclude that $a=b$ so that each value is unique (one-to-one mapping). Furthermore the inverse of a number's inverse is itself, meaning that inverses come in pairs (i.e. 2 and 6 $\mod 11$). From that fact we can show that $(n-2)(n-1)\cdots 3\cdot 2 \equiv 1 \mod n$ and from part one we know that $1 \equiv 1 \mod n$. Altogether it can be shown that $(n-1)! \equiv -1 \mod n$.
+
+\item If n is not prime, than the fundamental theorem of arithmetic says that $\exists a \textrm{ such that } 1 < a < n\textrm{ , } gcd(a,n) > 1$. From that fact we can conclude that $(n-1)! \not\equiv -1 \mod n$ because $gcd((n-1)!,n) > 1$
+
+\item One main reason for not implementing this primality test is because it does not scale well with the size of the input. The algorithm might be able to determine with certainty the difference between and prime and not prime, but will take ages to compute. In the study of algorithms the second fastest growing algorithm besides $n^n$ is $n!$, not to mention that a modulus is also being applied. 
+
+\end{itemize}
 
 \section*{Problem 8}
 
