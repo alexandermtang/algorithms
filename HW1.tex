@@ -83,10 +83,9 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 
 \begin{itemize}
 
-\item Let a tree with a single node have height 0 and define this row as row 0. This means that at row $k$, there will be at most $m^k$ nodes. Therefore, a tree of height $h$ will have at most $N$ nodes where \[N = \sum\limits_{k=0}^h m^k\ = \frac{m^{h+1} - 1}{m-1}.\] Solving for $h$ gives us the lower bound for the tree: \[\boxed{h = \lceil\log_m [N(m-1)+1]\rceil - 1}.\]
+\item Let a tree with a single node have height 0 and define this row as row 0. This means that at row $k$, there will be at most $m^k$ nodes. Therefore, a tree of height $h$ will have at most $N$ nodes where \[N = \sum\limits_{k=0}^h m^k\ = \frac{m^{h+1} - 1}{m-1}.\] Solving for $h$ gives us the lower bound for the height of the tree: \[\boxed{h = \lceil\log_m [N(m-1)+1]\rceil - 1}.\]
 
-\item Both $h_m$ and $h_{m'}$ will have the same running time (Big Theta), because they will both be logarithmic as a function of input and the change of base formula tells us that logarithms of different bases only differ by a constant. The only exception to this rule is if it is a 1-ary tree, in which case the height grows linear and the heights will have different rates of growth.
-
+\item $h_m = \lceil\log_m [N(m-1)+1]\rceil - 1$ and $h_{m'} = \lceil\log_{m'} [N({m'}-1)+1]\rceil - 1$. $h_m$ and $h_{m'}$ will have the same asymptotic running time, i.e. $h_m = \Theta(h_{m'}) $, because they will both be logarithmic as a function of input and the change of base formula tells us that logarithms of different bases only differ by a constant. The only exception to this rule is if it is a 1-ary tree, in which case the height grows linear and the heights will have different rates of growth. 
 \item
 
 \end{itemize}
@@ -99,7 +98,7 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 
 \item $11^{-1} \equiv x \mod 120 \implies 11x \equiv 1 \mod 120 \implies x = 11 + (120 \cdot z) \textrm{ where } x \in \mathbb{Z}$ \\
 
-\item For a number $x$, if $\forall y \epsilon [1, x-1] : gcd(x,y) = 1$, then x must be prime. The extended Euclid algorithm gives us the multiplicative inverse of $a \mod n$ if and only if $gcd(a, n)=1$. This means that the only numbers in the set $\{0, 1, \ldots, x^m - 1\}$ that do not have inverses modulo $x^m$ are the numbers in the set $S = \{a_0, a_1, \ldots ,a_n\}$ such that the $gcd(a_i, x^m)=x$ where $0 \leq i \leq n$. The $gcd(a_i, x^m)=x$ because $x$ is prime. The cardinality of $S = \frac{x^m}{x} - 1$. Therefore, there are $x^m - (\frac{x^m}{x} - 1)$ numbers in the set $\{0, 1, \ldots, x^m - 1\}$ that have multiplicative inverses modulo $x^m$. Since finding the multiplicative inverse using the extended Euclid algorithm takes $O(n^3)$, the total running time takes $\boxed{O(n^3) \cdot [x^m - (\frac{x^m}{x} - 1)]}$.
+\item For a number $x$, if $\forall y \epsilon [1, x-1] : gcd(x,y) = 1$, then x must be prime. The extended Euclid algorithm gives us the multiplicative inverse of $a \mod n$ if and only if $gcd(a, n)=1$. This means that the only numbers in the set $S = \{0, 1, \ldots, x^m - 1\}$ that do not have multiplicative inverses modulo $x^m$ are the numbers in the set \[U = \{a \mid a \in S, gcd(a,x^m)=x\}\] where \[\left\vert{U}\right\vert = \frac{x^m}{x}.\] The $gcd(a, x^m)=x$ because $x$ is prime. Therefore, there are $x^m - \frac{x^m}{x} = x^{m-1}(x-1)$ numbers in $S$ that have multiplicative inverses modulo $x^m$. Since finding the multiplicative inverse using the extended Euclid algorithm takes $O(n^3)$, the total running time takes \[\boxed{O(n^3) \cdot [x^{m-1}(x-1)]}.\]
 
 \end{itemize}
 
