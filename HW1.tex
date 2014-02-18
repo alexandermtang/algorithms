@@ -95,11 +95,11 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 
 \begin{itemize}
 
-  \item $2^{902} = (2^3)^{300} \cdot 2^2 \mod 7 \equiv 1^{300} \cdot 2^2 \mod 7 \equiv \boxed{4 \mod 7}$
+\item $2^{902} = (2^3)^{300} \cdot 2^2 \mod 7 \equiv 1^{300} \cdot 2^2 \mod 7 \equiv \boxed{4 \mod 7}$
 
 \item $11^{-1} \equiv x \mod 120 \implies 11x \equiv 1 \mod 120 \implies x = 11 + (120 \cdot z) \textrm{ where } x \in \mathbb{Z}$ \\
 
-\item
+\item For a number $x$, if $\forall y \epsilon [1, x-1] : gcd(x,y) = 1$, then x must be prime. The extended Euclid algorithm gives us the multiplicative inverse of $a \mod n$ if and only if $gcd(a, n)=1$. This means that the only numbers in the set $\{0, 1, \ldots, x^m - 1\}$ that do not have inverses modulo $x^m$ are the numbers in the set $S = \{a_0, a_1, \ldots ,a_n\}$ such that the $gcd(a_i, x^m)=x$ where $0 \leq i \leq n$. The $gcd(a_i, x^m)=x$ because $x$ is prime. The cardinality of $S = \frac{x^m}{x} - 1$. Therefore, there are $x^m - (\frac{x^m}{x} - 1)$ numbers in the set $\{0, 1, \ldots, x^m - 1\}$ that have multiplicative inverses modulo $x^m$. Since finding the multiplicative inverse using the extended Euclid algorithm takes $O(n^3)$, the total running time takes $\boxed{O(n^3) \cdot [x^m - (\frac{x^m}{x} - 1)]}$.
 
 \end{itemize}
 
@@ -107,7 +107,7 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 
 \begin{itemize}
 
-\item True. Let $g = gcd(x, y)$. $x = a_xg y = a_yg$
+  \item True. Let $g = gcd(x, y)$. Then, $x = a_xg$ and $y = a_yg$ such that $a_x$ and $a_y$ do not share any common factors, i.e. $a_x$ and $a_y$ are coprime. Rewrite \[(5x + 3y, 3x + 2y)\] as \[(5a_xg + 3a_yg, 3a_xg + 2a_yg).\] Factoring out $g$ gives \[(g\cdot(5a_x + 3a_y), g\cdot(3a_x + 2a_y)).\] Here, you can see that $(x,y)$ and $(5x + 3y, 3x + 2y)$ have a common divisor, $g$. The greatest common divisor of $(x,y)$ and $(5x + 3y, 3x + 2y)$ cannot be $> g$ because of the following: if $a_y$ shared a common factor with 5, then factor out 5 from $5a_x + 3a_y$. However, you will not be able to factor out 5 from $3a_x + 2a_y$, because 5 and 3 are coprime as are $a_x$ and $a_y$. This same reasoning can be applied to $a_x$. Therefore, the greatest common divisor of $(x,y)$ and $(5x + 3y, 3x + 2y)$ must be $g$.
 
 \item The proof that the numbers of the set S are relatively prime is very similar to that of the Prime Number Theorem. We can show that the first few elements of the set \{2,3,7,42,...\} are coprime and that the n-th element is also coprime because: 
 
