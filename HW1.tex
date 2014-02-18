@@ -83,7 +83,7 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 
 \begin{itemize}
 
-  \item ===============FIX THIS ==================Let a tree with a single node have height 0. A lower bound for the height is obtained when a row of nodes gets filled before the next level starts to get populated. A tree with the h-th row filled will have $N = m^{h+1}-1$ nodes if $h > 0$. This gives us a lower bound of $\boxed{h = \lceil \log _{m}(N+1) - 1 \rceil }$
+\item Let a tree with a single node have height 0 and define this row as row 0. This means that at row $k$, there will be at most $m^k$ nodes. Therefore, a tree of height $h$ will have at most $N$ nodes where \[N = \sum\limits_{k=0}^h m^k\ = \frac{m^{h+1} - 1}{m-1}.\] Solving for $h$ gives us the lower bound for the tree: \[\boxed{h = \lceil\log_m [N(m-1)+1]\rceil - 1}.\]
 
 \item Both $h_m$ and $h_{m'}$ will have the same running time (Big Theta), because they will both be logarithmic as a function of input and the change of base formula tells us that logarithms of different bases only differ by a constant. The only exception to this rule is if it is a 1-ary tree, in which case the height grows linear and the heights will have different rates of growth.
 
