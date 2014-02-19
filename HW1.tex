@@ -243,17 +243,19 @@ n & $\mod 5$ & $\mod 7$ \\ [0.5ex] % inserts table
 \label{table:nonlin} % is used to refer this table in the text 
 \end{table} 
 
-\item Part C is the result of the Chinese Remainder Theorem for $n = 2$. It is important to note for the solution that $C_x \equiv 1 \mod x$, $C_x \equiv 0 \mod y$, $C_y \equiv 0 \mod x$ and $C_y \equiv 1 \mod y$.
+\item This is the Chinese Remainder Theorem for $n = 2$. Let 
+  \[q = (m\cdot c_x + n\cdot c_y) \mod xy\] 
+where $c_x= y(y^{-1} \mod x)$ and $c_y= x(x^{-1} \mod y)$.
+Take $q \pmod x$. Then 
+  \[q = (m\cdot c_x + n\cdot c_y) \mod xy \pmod x\] 
+Because $c_y\pmod x = 0$,
+  \[q = mc_x \pmod x\]
+Because $c_x\pmod x = 1$,
+  \[q = m \pmod x\]
+Taking $q \pmod y$, you get $q = n \pmod y$ by the same reasoning. So $q$ is a solution to both $q=m \pmod x$ and $q=n \pmod y$.
 
-\vspace{10mm}
-
-\[q \equiv m \mod x \implies q\cdot y\cdot(y^{-1} \mod x) \equiv m\cdot y\cdot(y^{-1} \mod x) \mod x\]
-\[q \equiv n \mod y \implies q\cdot x\cdot(x^{-1} \mod y) \equiv n\cdot x\cdot(x^{-1} \mod y) \mod y\]
-\[q \equiv m\cdot y\cdot(y^{-1} \mod x) \mod x + n\cdot x \cdot(x^{-1} \mod y) \mod y\]
-\[q \equiv (m\cdot y\cdot(y^{-1} \mod x) + n\cdot x \cdot(x^{-1} \mod y)) \mod xy\]
-
-\item The above equations and properties still hold for 3 primes. That is that $C_x \equiv 1 \mod x$, $C_x \equiv 0 \mod y$ and $C_x \equiv 0 \mod z$. The corresponding q can be computed as follows and is useful for number 9.
-\[q = m\cdot(yz\cdot((yz)^{-1} \mod x)) + n\cdot(xz\cdot((xz)^{-1} \mod y))+o\cdot(xy\cdot((xy)^{-1} \mod z))\]
+\item This will be the case of the Chinese Remainder Theorem for $n=3$. The above equations and properties will still hold for 3 primes. That is that $c_x \equiv 1 \mod x$, $c_x \equiv 0 \mod y$ and $c_x \equiv 0 \mod z$. The corresponding $q$ can be computed as follows and is useful for number 9.
+\[q = m\cdot(yz\cdot((yz)^{-1} \mod x)) + n\cdot(xz\cdot((xz)^{-1} \mod y))+o\cdot(xy\cdot((xy)^{-1} \mod z))\mod xyz\] 
 
 \end{itemize}
 
@@ -266,24 +268,24 @@ $q \equiv n \mod y$ \\
 $q \equiv o \mod z$ \\
 
 \noindent Then to solve for q the formula is:\\
-\indent $q = m \cdot C_x + n \cdot C_y + o \cdot C_z$\\
-where $C_x$, $C_y$, and $C_z$ are: \\
-\indent$C_x = y \cdot z \cdot (y^{-1} \mod x)(z^{-1} \mod x)$\\
-\indent$C_y = x \cdot z \cdot (x^{-1} \mod y)(z^{-1} \mod y)$\\
-\indent$C_z = y \cdot x \cdot (y^{-1} \mod z)(x^{-1} \mod z)$\\
+\indent $q = m \cdot c_x + n \cdot c_y + o \cdot c_z$\\
+where $c_x$, $c_y$, and $c_z$ are: \\
+\indent$c_x = y \cdot z \cdot (y^{-1} \mod x)(z^{-1} \mod x)$\\
+\indent$c_y = x \cdot z \cdot (x^{-1} \mod y)(z^{-1} \mod y)$\\
+\indent$c_z = y \cdot x \cdot (y^{-1} \mod z)(x^{-1} \mod z)$\\
 
-\noindent In Mallory's case $q = k^3$ (where k is the message) and the equations she used are as follows: \\
+\noindent In Mallory's case $q = k^3$ (where $k$ is the message) and the equations she used are as follows: \\
 
 $q \equiv 674 \mod 3337$ \\
 \indent$q \equiv 36 \mod 187$ \\
 \indent$q \equiv 948 \mod 1219$ \\
 
-$q = 674 \cdot C_x + 36 \cdot C_y + 948 \cdot C_z$\\
+$q = 674 \cdot c_x + 36 \cdot c_y + 948 \cdot c_z$\\
 
-$C_x = 187 \cdot 1219 \cdot (187^{-1} \mod 3337)(1219^{-1} \mod 3337)$\\
-\indent$C_y = 3337 \cdot 1219 \cdot (3337^{-1} \mod 187)(1219^{-1} \mod 187)$\\
-\indent$C_z = 187 \cdot 3337 \cdot (187^{-1} \mod 1219)(3337^{-1} \mod 1219)$\\
+$c_x = 187 \cdot 1219 \cdot (187^{-1} \mod 3337)(1219^{-1} \mod 3337)$\\
+\indent$c_y = 3337 \cdot 1219 \cdot (3337^{-1} \mod 187)(1219^{-1} \mod 187)$\\
+\indent$c_z = 187 \cdot 3337 \cdot (187^{-1} \mod 1219)(3337^{-1} \mod 1219)$\\
 
-\noindent After plugging in the values for $C_x$, $C_y$, and $C_z$, she got $q = 74088$ and $k = \sqrt[3]{q}$ and therefore $k = 42$.
+\noindent After plugging in the values for $c_x$, $c_y$, and $c_z$, she got $q = 74088$ and $k = \sqrt[3]{q}$ and therefore $k = 42$.
 
 \end{document}
