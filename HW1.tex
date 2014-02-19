@@ -95,7 +95,7 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 14. \indent \indent return FALSE \\
 15. return TRUE \\
 
-\noindent \emph{Total:} $O(n^5)$. This was calculated by multiplying the big O times of the outer loop, the inner loop and the dominating modulat expoentiation, i.e. $O(n) \cdot O(n) \cdot O(n^5)$.
+\noindent \emph{Total:} $O(n^5)$. This was calculated by multiplying the big O times of the outer loop, the inner loop and the dominating modular exponentiation, i.e. $O(n) \cdot O(n) \cdot O(n^3)$.
 
 \section*{Problem 3}
 
@@ -105,7 +105,7 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 
 \item $h_m = \lceil\log_m [N(m-1)+1]\rceil - 1$ and $h_{m'} = \lceil\log_{m'} [N({m'}-1)+1]\rceil - 1$. $h_m$ and $h_{m'}$ will have the same asymptotic running time, i.e. $h_m = \Theta(h_{m'}) $, because they will both be logarithmic as a function of input and the change of base formula tells us that logarithms of different bases only differ by a constant. The only exception to this rule is if it is a 1-ary tree, in which case the height grows linear and the heights will have different rates of growth. 
 
-\item Using this definition of modular exponentiation, there will be $O(\log y) = O(n)$ recursive calls. 
+\item Using this definition of modular exponentiation, there will be $O(\log y) = O(n)$ recursive calls. Each call involves the multiplication of two $m$-bit numbers, which will take $O(m^2)$ time with the result being at most $2m$ bits. After the multiplication, the $2m$ bit result modulo $N$, which is an $o$-bit number, will take $O(mo + \max(o,m)) = O(mo)$ time. In total, this algorithm will have a running time of $\boxed{O(n \cdot (m^2 + mo))}$.
 
 \end{itemize}
 
@@ -115,20 +115,23 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 
 \item $2^{902} = (2^3)^{300} \cdot 2^2 \mod 7 \equiv 1^{300} \cdot 2^2 \mod 7 \equiv \boxed{4 \mod 7}$
 
-\item $11^{-1} \equiv x \mod 120 \implies 11x \equiv 1 \mod 120 \implies x = 11 + (120 \cdot x) \textrm{ where } x \in \mathbb{Z}$ \\
-$13^{-1} \equiv x \mod 45 \implies 13x \equiv 1 \mod 45 \implies x = 7 + (45 \cdot z) \textrm{ where } z \in \mathbb{Z}$ \\
-$35^{-1} \equiv x \mod 77 \implies 35x \equiv 1 \mod 77 \implies$ x does not exist because $gcd(35,77) > 1$ \\
-$9^{-1} \equiv x \mod 11 \implies 9x \equiv 1 \mod 11 \implies x = 5 + (11 \cdot z) \textrm{ where } z \in \mathbb{Z}$ \\
-$11^{-1} \equiv x \mod 1111 \implies 11x \equiv 1 \mod 1111 \implies$ x does not exist because $gcd(11,1111) > 1$ \\
-To find the modulo multiplicative inverse in the previous problems we used the extended Euclid algorithm. The algorithm can be demonstrated with $9^{-1} \equiv x \mod 11$ as follows:
+\item $11^{-1} \mod 120 = 11$ \\
+$13^{-1} \mod 45 = 7$ \\
+$35^{-1} \mod 77$ does not exist because $gcd(35,77) > 1$ \\
+$9^{-1} \mod 11 = 5$ \\
+$11^{-1} \mod 1111$ does not exist because $gcd(11,1111) > 1$ \\ \\
+To find the modulo multiplicative inverse in the previous problems we used the extended Euclid algorithm. The algorithm can be demonstrated with $9^{-1} \mod 11$ by first finding the $gcd(9,11)$ using the Euclid algorithm:
 
 \[ \textrm{step } 0: 11 = 1(9) + 2\]
 \[ \textrm{step } 1: 9 = 4(2) + 1 \]
 \[ \textrm{step } 2: 1 = 1(1) + 0 \]
+
+So $gcd(9,11) = 1$. This means that there is a linear combination of 9 and 11 equaling 1. Working backwards using the extended Euclid algorithm:
+
 \[ 1 = 9 - 4(2) \]
 \[ 1 = 9-4(11-1(9)) = 5(9) - 4(11)\]
 
-According to the extending euclid algorithm 5 is the inverse of 9 $\mod 11$.
+So $9^{-1} \mod 11$ = 5.
 
 \item For a number $x$, if $\forall y \epsilon [1, x-1] : gcd(x,y) = 1$, then x must be prime. The extended Euclid algorithm gives us the multiplicative inverse of $a \mod n$ if and only if $gcd(a, n)=1$. This means that the only numbers in the set $S = \{0, 1, \ldots, x^m - 1\}$ that do not have multiplicative inverses modulo $x^m$ are the numbers in the set \[U = \{a \mid a \in S, gcd(a,x^m)=x\}\] where \[\left\vert{U}\right\vert = \frac{x^m}{x}.\] The $gcd(a, x^m)=x$ because $x$ is prime. Therefore, there are $x^m - \frac{x^m}{x} = x^{m-1}(x-1)$ numbers in $S$ that have multiplicative inverses modulo $x^m$. Since finding the multiplicative inverse using the extended Euclid algorithm takes $O(n^3)$, the total running time takes \[\boxed{O(n^3) \cdot [x^{m-1}(x-1)]}.\]
 
