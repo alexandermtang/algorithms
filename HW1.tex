@@ -158,7 +158,7 @@ Since all elements are coprime to those in the set before it there will be no tw
 
 \begin{itemize}
 
-\item Assume that x and y are 2 different 32-bit words. $m(x) = Mx \mod 2$ where M is an 8x32 matrix whose elements are completely randomized. x and y are only mapped the same index in the array if and only if the sequence of numbers before modulo 2 are the same sequence of evens and odds. The probability distribution of the numbers 0-32 in a single spot in Mx is ... meaning the probability of an even occuring is $\frac{1}{2}$ and the probability of an odd occurring is also $\frac{1}{2}$. Since the probabilities of evens and odds occuring in Mx is $\frac{1}{2}$ we can conclude that the probability of x and y being mapped to the same index is $(\frac{1}{2})^{8} = \frac{1}{256}$, since they need to have the same sequence of evens and odds.
+\item Assume that $x$ and $y$ are 2 different 32-bit words. $m(x) = $Mx$ \mod 2$ where M is an 8x32 matrix whose elements are completely randomized. x and y are only mapped the same index in the array if and only if the sequence of numbers before modulo 2 are the same sequence of evens and odds. The probability distribution of the numbers 0-32 in a single spot in $Mx$ is ... meaning the probability of an even occurring is $\frac{1}{2}$ and the probability of an odd occurring is also $\frac{1}{2}$. Since the probabilities of evens and odds occurring in $Mx$ is $\frac{1}{2}$ we can conclude that the probability of x and y being mapped to the same index is $(\frac{1}{2})^{8} = \frac{1}{256}$, since they need to have the same sequence of evens and odds.
 
 \item The universal hash function in 1.5.2 deals with hashing IP addresses (32-bit) to an array with 256 slots, so it is the same problem we are trying to solve in problem 6. The way they accomplish the hashing is by breaking the 32-bit word into 8-bit chunks. Each 8-bit chunk is multiplied by another 8-bit random number and those products are summed for all 4 chunks. After the sum is computed the new number is then taken modulo 256. In total the hashing takes a total of $8\cdot 4=32$ random bits opposed to our $8\cdot 32$ = 256 random bits. Both hashing functions are universal, but the matrix hash described in problem 6 takes more random bits.
 
@@ -168,11 +168,11 @@ Since all elements are coprime to those in the set before it there will be no tw
 
 \begin{itemize}
 
-\item The numbers that are modular multiplicatives of themselves module n are the numbers 1 and $n-1$. 1 is the modulo multiplative inverse of itself because $1\cdot 1 \equiv 1 \mod n$. $n-1$ is the modular multiplicative inverse of itself because $(n-1)(n-1) = n^2-2n+1\equiv 1 \mod n$. 
+\item The numbers that are modular multiplicatives of themselves module n are the numbers 1 and $n-1$. 1 is the modulo multiplicative inverse of itself because $1\cdot 1 \equiv 1 \mod n$. $n-1$ is the modular multiplicative inverse of itself because $(n-1)(n-1) = n^2-2n+1\equiv 1 \mod n$. 
 
-\item To show that $(n-1)! \equiv -1 \mod n$ and n must be prime, we must first observe that $n-1 \equiv -1 \mod n$. Using this we can see that $(n-1)! \equiv -(n-2)! \mod n$.  From the numbers $2$ to $n-2$ we can also observe that their inverses will also be in the range from $2$ to $n-2$ and be unique. We can be assured that all of 1 to $n-1$ inverse to exist because if a number a is picked from $(1,n-1)$, then gcd(a,n) will be 1 because n is prime and $a < n$. We can also be assured they're unique because assume that a and b are picked from $(1,n-1)$. Then $a\cdot x \equiv 1 \mod n$ and $b\cdot x \equiv 1\mod n$ and $a\cdot x \equiv b \cdot x \mod n$. Dividing the equivalence by x we obtain $a \equiv b \mod n$ and since $1 \le a,b < n$, we can conclude that $a=b$ so that each value is unique (one-to-one mapping). Furthermore the inverse of a number's inverse is itself, meaning that inverses come in pairs (i.e. 2 and 6 $\mod 11$). From that fact we can show that $(n-2)(n-1)\cdots 3\cdot 2 \equiv 1 \mod n$ and from part one we know that $1 \equiv 1 \mod n$. Altogether it can be shown that $(n-1)! \equiv -1 \mod n$.
+\item To show that $(n-1)! \equiv -1 \mod n$ and $n$ must be prime, we must first observe that $n-1 \equiv -1 \mod n$. Using this we can see that $(n-1)! \equiv -(n-2)! \mod n$.  From the numbers $2$ to $n-2$ we can also observe that their inverses will also be in the range from $2$ to $n-2$ and be unique. We can be assured that all of 1 to $n-1$ inverse to exist because if a number a is picked from $(1,n-1)$, then $gcd(a,n)$ will be 1 because n is prime and $a < n$. We can also be assured they're unique because assume that a and b are picked from $(1,n-1)$. Then $a\cdot x \equiv 1 \mod n$ and $b\cdot x \equiv 1\mod n$ and $a\cdot x \equiv b \cdot x \mod n$. Dividing the equivalence by x we obtain $a \equiv b \mod n$ and since $1 \le a,b < n$, we can conclude that $a=b$ so that each value is unique (one-to-one mapping). Furthermore the inverse of a number's inverse is itself, meaning that inverses come in pairs (i.e. 2 and 6 $\mod 11$). From that fact we can show that $(n-2)(n-1)\cdots 3\cdot 2 \equiv 1 \mod n$ and from part one we know that $1 \equiv 1 \mod n$. Altogether it can be shown that $(n-1)! \equiv -1 \mod n$.
 
-\item If n is not prime, than the fundamental theorem of arithmetic says that $\exists a \textrm{ such that } 1 < a < n\textrm{ , } gcd(a,n) > 1$. From that fact we can conclude that $(n-1)! \not\equiv -1 \mod n$ because $gcd((n-1)!,n) > 1$
+\item If $n$ is not prime, then the fundamental theorem of arithmetic says that $\exists a \textrm{ such that } 1 < a < n\textrm{ , } gcd(a,n) > 1$. From that fact we can conclude that $(n-1)! \not\equiv -1 \mod n$ because $gcd((n-1)!,n) > 1$
 
 \item One main reason for not implementing this primality test is because it does not scale well with the size of the input. The algorithm might be able to determine with certainty the difference between and prime and not prime, but will take ages to compute. In the study of algorithms the second fastest growing algorithm besides $n^n$ is $n!$, not to mention that a modulus is also being applied. 
 
@@ -182,14 +182,16 @@ Since all elements are coprime to those in the set before it there will be no tw
 
 \begin{itemize}
 
-\item To start the proof assume that $\exists (p,q)$ such that $q \equiv m \mod x$, $q \equiv n \mod y$ and $p \equiv m \mod x$, $p \equiv n \mod y$ and $p \ne q$, $0 \le p,q \le xy$, x and y are prime. That means that I can write $p = m + i\cdot x$ and $q = m + j\cdot x$ where $i \ne j$. Substituting in we obtain $m + i\cdot x \equiv n \mod y$ and $m + j\cdot x \equiv n \mod y$. We know from our assumptions that $0 \le m + i\cdot x, m + j\cdot x < xy$. We can also note that $i,j < y$. By subtracting from both sides we get $ix \equiv n - m \mod y$ and $jx \equiv n - m \mod y$. Since $i,j < y$ we can conclude that $i=j$ which contradicts our assumption. This means that $p=q$ and that p is unique to a pair of $(m,n)$. This problem shows the basis of the Chinese Remainder Theorem.
+\item See Table 1.
+
+\item To start the proof assume that $\exists (p,q)$ such that $q \equiv m \mod x$, $q \equiv n \mod y$ and $p \equiv m \mod x$, $p \equiv n \mod y$ and $p \ne q$, $0 \le p,q \le xy$, $x$ and $y$ are prime. That means that I can write $p = m + i\cdot x$ and $q = m + j\cdot x$ where $i \ne j$. Substituting in we obtain $m + i\cdot x \equiv n \mod y$ and $m + j\cdot x \equiv n \mod y$. We know from our assumptions that $0 \le m + i\cdot x, m + j\cdot x < xy$. We can also note that $i,j < y$. By subtracting from both sides we get $ix \equiv n - m \mod y$ and $jx \equiv n - m \mod y$. Since $i,j < y$ we can conclude that $i=j$ which contradicts our assumption. This means that $p=q$ and that p is unique to a pair of $(m,n)$. This problem shows the basis of the Chinese Remainder Theorem.
 
 \begin{table}[ht] 
 \centering
-\caption{Modulus} % title of Table 
+\caption{Problem 8A} % title of Table 
 \begin{tabular}{c c c} % centered columns (4 columns) 
 \hline\hline %inserts double horizontal lines 
-n & $\mod 5$ & $\mod 7$ \\ [0.5ex] % inserts table 
+$n$ & $\mod 5$ & $\mod 7$ \\ [0.5ex] % inserts table 
 %heading 
 \hline % inserts single horizontal line 
 0 & 0 & 0 \\ % inserting body of the table 
@@ -216,7 +218,7 @@ n & $\mod 5$ & $\mod 7$ \\ [0.5ex] % inserts table
 \quad
 \begin{tabular}{c c c}
 \hline\hline %inserts double horizontal lines 
-n & $\mod 5$ & $\mod 7$ \\ [0.5ex] % inserts table 
+$n$ & $\mod 5$ & $\mod 7$ \\ [0.5ex] % inserts table 
 %heading 
 \hline % inserts single horizontal line 
 19 & 4 & 5 \\ 
