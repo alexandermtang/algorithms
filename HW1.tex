@@ -79,6 +79,24 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 
 \section*{Problem 2}
 
+1. Random Sample: $O(n)$ \\
+2. Even Check: $O(1)$ \\
+3. \indent Add 1: $O(n)$ \\
+4. Mod: $O(n^2)$ \\
+5. For loop: $O(n)$ \\
+6. \indent GCD $O(n^3)$ \\
+7. \indent \indent return False \\
+8. \indent Compute x,z $O(n)$ \\
+9. \indent Modular Exponentiation $O(n^3)$ \\
+10. \indent For loop $O(n)$ \\
+11. \indent \indent Modular Exponentiation $O(n^3)$ \\
+12. \indent \indent Mod $O(n^2)$ \\
+13. \indent Low Error Primality Test $O(n^3)$ \\
+14. \indent \indent return FALSE \\
+15. return TRUE \\
+
+\noindent \emph{Total:} $O(n^5)$. This was calculated by multiplying the big O times of the outer loop, the inner loop and the dominating modulat expoentiation, i.e. $O(n) \cdot O(n) \cdot O(n^5)$.
+
 \section*{Problem 3}
 
 \begin{itemize}
@@ -96,7 +114,20 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 
 \item $2^{902} = (2^3)^{300} \cdot 2^2 \mod 7 \equiv 1^{300} \cdot 2^2 \mod 7 \equiv \boxed{4 \mod 7}$
 
-\item $11^{-1} \equiv x \mod 120 \implies 11x \equiv 1 \mod 120 \implies x = 11 + (120 \cdot z) \textrm{ where } x \in \mathbb{Z}$ \\
+\item $11^{-1} \equiv x \mod 120 \implies 11x \equiv 1 \mod 120 \implies x = 11 + (120 \cdot x) \textrm{ where } x \in \mathbb{Z}$ \\
+$13^{-1} \equiv x \mod 45 \implies 13x \equiv 1 \mod 45 \implies x = 7 + (45 \cdot z) \textrm{ where } z \in \mathbb{Z}$ \\
+$35^{-1} \equiv x \mod 77 \implies 35x \equiv 1 \mod 77 \implies$ x does not exist because $gcd(35,77) > 1$ \\
+$9^{-1} \equiv x \mod 11 \implies 9x \equiv 1 \mod 11 \implies x = 5 + (11 \cdot z) \textrm{ where } z \in \mathbb{Z}$ \\
+$11^{-1} \equiv x \mod 1111 \implies 11x \equiv 1 \mod 1111 \implies$ x does not exist because $gcd(11,1111) > 1$ \\
+To find the modulo multiplicative inverse in the previous problems we used the extended Euclid algorithm. The algorithm can be demonstrated with $9^{-1} \equiv x \mod 11$ as follows:
+
+\[ \textrm{step } 0: 11 = 1(9) + 2\]
+\[ \textrm{step } 1: 9 = 4(2) + 1 \]
+\[ \textrm{step } 2: 1 = 1(1) + 0 \]
+\[ 1 = 9 - 4(2) \]
+\[ 1 = 9-4(11-1(9)) = 5(9) - 4(11)\]
+
+According to the extending euclid algorithm 5 is the inverse of 9 $\mod 11$.
 
 \item For a number $x$, if $\forall y \epsilon [1, x-1] : gcd(x,y) = 1$, then x must be prime. The extended Euclid algorithm gives us the multiplicative inverse of $a \mod n$ if and only if $gcd(a, n)=1$. This means that the only numbers in the set $S = \{0, 1, \ldots, x^m - 1\}$ that do not have multiplicative inverses modulo $x^m$ are the numbers in the set \[U = \{a \mid a \in S, gcd(a,x^m)=x\}\] where \[\left\vert{U}\right\vert = \frac{x^m}{x}.\] The $gcd(a, x^m)=x$ because $x$ is prime. Therefore, there are $x^m - \frac{x^m}{x} = x^{m-1}(x-1)$ numbers in $S$ that have multiplicative inverses modulo $x^m$. Since finding the multiplicative inverse using the extended Euclid algorithm takes $O(n^3)$, the total running time takes \[\boxed{O(n^3) \cdot [x^{m-1}(x-1)]}.\]
 
@@ -138,8 +169,6 @@ Since all elements are coprime to those in the set before it there will be no tw
 \section*{Problem 8}
 
 \begin{itemize}
-
-\item 
 
 \item To start the proof assume that $\exists (p,q)$ such that $q \equiv m \mod x$, $q \equiv n \mod y$ and $p \equiv m \mod x$, $p \equiv n \mod y$ and $p \ne q$, $0 \le p,q \le xy$, x and y are prime. That means that I can write $p = m + i\cdot x$ and $q = m + j\cdot x$ where $i \ne j$. Substituting in we obtain $m + i\cdot x \equiv n \mod y$ and $m + j\cdot x \equiv n \mod y$. We know from our assumptions that $0 \le m + i\cdot x, m + j\cdot x < xy$. We can also note that $i,j < y$. By subtracting from both sides we get $ix \equiv n - m \mod y$ and $jx \equiv n - m \mod y$. Since $i,j < y$ we can conclude that $i=j$ which contradicts our assumption. This means that $p=q$ and that p is unique to a pair of $(m,n)$. This problem shows the basis of the Chinese Remainder Theorem.
 
