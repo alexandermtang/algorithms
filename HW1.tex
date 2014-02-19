@@ -263,30 +263,31 @@ Taking $q \pmod y$, you get $q = n \pmod y$ by the same reasoning. So $q$ is a s
 
 \section*{Problem 9}
 
-\noindent Mallory was able to figure out this message by using the Chinese Remainder Theorem. This applies in this case because every public encryption key $e$ is 3 which opens a vulnerability in RSA. For three relative primes $x,y,z$,the three relevant equations are: \\
-\indent$q \equiv m \mod x$ \\
-\indent$q \equiv n \mod y$ \\
-\indent$q \equiv o \mod z$ \\
+Mallory used the function $b = a^e \mod N$ to encrypt her messages where $a$ is the plaintext and $b$ is the ciphertext. Notice that $e = 3$ for every encryption function. Let $q = a^3$ so $q = b \mod N$. Using the three intercepted messages, you can uncover the following equations:
 
-\noindent Then to solve for $q$ the formula is:\\
-\indent $q = m \cdot c_x + n \cdot c_y + o \cdot c_z \mod xyz$\\
-where $c_x$, $c_y$, and $c_z$ are: \\
-\indent$c_x = y \cdot z \cdot ({yz}^{-1} \mod x)$\\
-\indent$c_y = x \cdot z \cdot ({xz}^{-1} \mod y)$\\
-\indent$c_z = y \cdot x \cdot ({yx}^{-1} \mod z)$\\
+\[q \equiv m \mod x\]
+\[q \equiv n \mod y\]
+\[q \equiv o \mod z\]
 
-\noindent In Mallory's case $q = k^3$ (where $k$ is the message) and the equations she used are as follows: \\
+\noindent where $m, n, o$ are the encrypted messages and $m = 674, n = 36, o = 948, x = 3337, y = 187,$ and $z = 1219$.
+Since $x, y, z$ are coprime, use the Chinese Remainder Theorem to solve for $q$ which says:
 
-$q \equiv 674 \mod 3337$ \\
-\indent$q \equiv 36 \mod 187$ \\
-\indent$q \equiv 948 \mod 1219$ \\
+\[q = m \cdot c_x + n \cdot c_y + o \cdot c_z \mod xyz\]
 
-$q = 674 \cdot c_x + 36 \cdot c_y + 948 \cdot c_z \mod (3337 \cdot 187 \cdot 1219)$\\
+where:
 
-$c_x = 187 \cdot 1219 \cdot ({189 \cdot 1219}^{-1} \mod 3337)$\\
-\indent$c_y = 3337 \cdot 1219 \cdot ({3337 \cdot 1219}^{-1} \mod 187)$\\
-\indent$c_z = 187 \cdot 3337 \cdot ({187 \cdot 3337}^{-1} \mod 1219)$\\
+\[c_x = y \cdot z \cdot ({yz}^{-1} \mod x)\]
+\[c_y = x \cdot z \cdot ({xz}^{-1} \mod y)\]
+\[c_z = y \cdot x \cdot ({yx}^{-1} \mod z)\]
 
-\noindent After plugging in the values for $c_x$, $c_y$, and $c_z$, she got $q = 74088$ and $k = \sqrt[3]{q}=42$.
+\noindent Substituting gives:
+
+\[q = 674 \cdot c_x + 36 \cdot c_y + 948 \cdot c_z \mod (3337 \cdot 187 \cdot 1219)\]
+
+\[c_x = 187 \cdot 1219 \cdot ({189 \cdot 1219}^{-1} \mod 3337)\]
+\[c_y = 3337 \cdot 1219 \cdot ({3337 \cdot 1219}^{-1} \mod 187)\]
+\[c_z = 187 \cdot 3337 \cdot ({187 \cdot 3337}^{-1} \mod 1219)\]
+
+\noindent So $q = 74088$ and the plaintext $a = \sqrt[3]{q}= \boxed{42}$.
 
 \end{document}
