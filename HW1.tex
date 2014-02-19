@@ -28,8 +28,8 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 
 % Problem 1iii
 \item $f(n) = \lg (\lg ^{*}n) \textrm{ , } g(n) = \lg ^*(\lg n)$ \\ \\
- $f(n) = \lg (\lg ^{*}n = \lg (1+ \lg (\lg (n))$. In the preceding function we can ignore the 1 because it is constant and does not grow with n, so we can say that $f(n) = O(\lg (\lg (\lg (n))))$ \\
- $g(n) = \lg ^{*}(\lg (n) = 1 + \lg (\lg (\lg (n))$. In the preceding function we can ignore the 1 because it is constant and does not grow with n, so we can say that $g(n) = O(\lg (\lg (\lg (n))))$ \\
+  $f(n) = \lg (\lg ^{*}n) = \lg (1+ \lg (\lg n))$. In the preceding function we can ignore the 1 because it is constant and does not grow with n, so we can say that $f(n) = O(\lg (\lg (\lg n)))$. \\
+ $g(n) = \lg ^{*}(\lg n) = 1 + \lg (\lg (\lg (n))$. In the preceding function we can ignore the 1 because it is constant and does not grow with n, so we can say that $g(n) = O(\lg (\lg (\lg n)))$. \\
  Since f(n) and g(n) grow at the same rate as a function of the input $\implies \boxed{f(n) = \Theta(g(n))}$ \\
 
 % Problem 1iv
@@ -42,13 +42,13 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 % Problem 1v
 \item $f(n) = 2^n \textrm{ , } g(n) = n^{\lg n}$ \\ \\
  $f(n) = 2^n \implies \lg (f(n)) = \lg (2^n) = n\cdot \lg (2)$ is linear with respect to the input. \\
- $g(n) = n^{\lg n} \implies \lg (g(n)) = \lg (n^{\lg n}) = (\lg (n))^2$ is polylogarithmic with respect to the input. \\
+ $g(n) = n^{\lg n} \implies \lg (g(n)) = \lg (n^{\lg n}) = (\lg n)^2$ is polylogarithmic with respect to the input. \\
  Since polynomial (linear is a polynomial) functions dominate polylogarithmic functions $\implies \boxed{f(n) = \Omega(g(n))}$  \\
 
 % Problem 1vi
 \item $f(n) = 2^{\sqrt{\lg n}} \textrm{ , } g(n) = n(\lg n)^3$ \\ \\
- $f(n) = 2^{\sqrt{\lg n}} \implies \lg (2^{\sqrt{\lg n}}) = {\sqrt{\lg n}}\cdot \lg 2$ is polylogarithmic with respect to input \\
- $g(n) = n(\lg (n))^3 \implies \lg (g(n)) = \lg (n) + 3\lg (\lg (n))$ is logarithmic with respect to input because $\lg (n)$ dominates the expression. \\
+  $\lg(f(n)) = \lg (2^{\sqrt{\lg n}}) = {\sqrt{\lg n}}\cdot \lg 2 = {\sqrt{\lg n}}$ is polylogarithmic with respect to input \\
+  $\lg(g(n)) = \lg(n(\lg n)^3) = \lg n + 3\lg (\lg n)$ is logarithmic with respect to input because $\lg (n)$ dominates the expression. \\
  Since $\lg (f(n))$ and $\lg (g(n))$ are both polylogarithmic, but the power of $\lg (g(n))$ is greater than that of $\lg (f(n))$ $\implies \boxed{f(n) = O(g(n))}$ \\
 
 % Problem 1vii
@@ -86,6 +86,7 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 \item Let a tree with a single node have height 0 and define this row as row 0. This means that at row $k$, there will be at most $m^k$ nodes. Therefore, a tree of height $h$ will have at most $N$ nodes where \[N = \sum\limits_{k=0}^h m^k\ = \frac{m^{h+1} - 1}{m-1}.\] Solving for $h$ gives us the lower bound for the height of the tree: \[\boxed{h = \lceil\log_m [N(m-1)+1]\rceil - 1}.\]
 
 \item $h_m = \lceil\log_m [N(m-1)+1]\rceil - 1$ and $h_{m'} = \lceil\log_{m'} [N({m'}-1)+1]\rceil - 1$. $h_m$ and $h_{m'}$ will have the same asymptotic running time, i.e. $h_m = \Theta(h_{m'}) $, because they will both be logarithmic as a function of input and the change of base formula tells us that logarithms of different bases only differ by a constant. The only exception to this rule is if it is a 1-ary tree, in which case the height grows linear and the heights will have different rates of growth. 
+
 \item
 
 \end{itemize}
