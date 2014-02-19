@@ -261,11 +261,12 @@ Taking $q \pmod y$, you get $q = n \pmod y$ by the same reasoning. So $q$ is a s
 
 \section*{Problem 9}
 
-\noindent Mallory was able to figure out this message by using the Chinese Remainder Theorem. This theorem can be applied when you have a $q$ that you wish to find that is equivalent to an x, y, and z on the condition that they are all relative primes. This applies in this case because every e in the public keys is 3 which opens a vulnerability in RSA\\
+\noindent Mallory was able to figure out this message by using the Chinese Remainder Theorem. This applies in this case because every e in the public keys is 3 which opens a vulnerability in RSA\\
 i.e :\\
-$q \equiv m \mod x$ \\
-$q \equiv n \mod y$ \\
-$q \equiv o \mod z$ \\
+\indent$q \equiv m \mod x$ \\
+\indent$q \equiv n \mod y$ \\
+\indent$q \equiv o \mod z$ \\
+This is true assuming that x,y and z are relative primes \\ 
 
 \noindent Then to solve for q the formula is:\\
 \indent $q = m \cdot c_x + n \cdot c_y + o \cdot c_z$\\
