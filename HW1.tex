@@ -87,7 +87,7 @@ Since f(n) is exponential and g(n) is linear $\implies \boxed{f(n)  = \Omega(g(n
 
 \item $h_m = \lceil\log_m [N(m-1)+1]\rceil - 1$ and $h_{m'} = \lceil\log_{m'} [N({m'}-1)+1]\rceil - 1$. $h_m$ and $h_{m'}$ will have the same asymptotic running time, i.e. $h_m = \Theta(h_{m'}) $, because they will both be logarithmic as a function of input and the change of base formula tells us that logarithms of different bases only differ by a constant. The only exception to this rule is if it is a 1-ary tree, in which case the height grows linear and the heights will have different rates of growth. 
 
-\item
+\item Using this definition of modular exponentiation, there will be $O(\log y) = O(n)$ recursive calls. 
 
 \end{itemize}
 
