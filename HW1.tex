@@ -137,6 +137,73 @@ Since all elements are coprime to those in the set before it there will be no tw
 
 \section*{Problem 8}
 
+\begin{itemize}
+
+\item 
+
+\item To start the proof assume that $\exists (p,q)$ such that $q \equiv m \mod x$, $q \equiv n \mod y$ and $p \equiv m \mod x$, $p \equiv n \mod y$ and $p \ne q$, $0 \le p,q \le xy$, x and y are prime. That means that I can write $p = m + i\cdot x$ and $q = m + j\cdot x$ where $i \ne j$. Substituting in we obtain $m + i\cdot x \equiv n \mod y$ and $m + j\cdot x \equiv n \mod y$. We know from our assumptions that $0 \le m + i\cdot x, m + j\cdot x < xy$. We can also note that $i,j < y$. By subtracting from both sides we get $ix \equiv n - m \mod y$ and $jx \equiv n - m \mod y$. Since $i,j < y$ we can conclude that $i=j$ which contradicts our assumption. This means that $p=q$ and that p is unique to a pair of $(m,n)$. This problem shows the basis of the Chinese Remainder Theorem.
+
+\begin{table}[ht] 
+\centering
+\caption{Modulus} % title of Table 
+\begin{tabular}{c c c} % centered columns (4 columns) 
+\hline\hline %inserts double horizontal lines 
+n & $\mod 5$ & $\mod 7$ \\ [0.5ex] % inserts table 
+%heading 
+\hline % inserts single horizontal line 
+0 & 0 & 0 \\ % inserting body of the table 
+1 & 1 & 1 \\ 
+2 & 2 & 2 \\ 
+3 & 3 & 3 \\ 
+4 & 4 & 4 \\ 
+5 & 0 & 5 \\ 
+6 & 1 & 6 \\ 
+7 & 2 & 0 \\ 
+8 & 3 & 1 \\ 
+9 & 4 & 2 \\ 
+10 & 0 & 3 \\ 
+11 & 1 & 4 \\ 
+12 & 2 & 5 \\ 
+13 & 3 & 6 \\ 
+14 & 4 & 0 \\ 
+15 & 0 & 1 \\ 
+16 & 1 & 2 \\ 
+17 & 2 & 3 \\ 
+18 & 3 & 4 \\ [1ex] % [1ex] adds vertical space 
+\hline %inserts single line 
+\end{tabular} 
+\quad
+\begin{tabular}{c c c}
+\hline\hline %inserts double horizontal lines 
+n & $\mod 5$ & $\mod 7$ \\ [0.5ex] % inserts table 
+%heading 
+\hline % inserts single horizontal line 
+19 & 4 & 5 \\ 
+20 & 0 & 6 \\ 
+21 & 1 & 0 \\ 
+22 & 2 & 1 \\ 
+23 & 3 & 2 \\ 
+24 & 4 & 3 \\ 
+25 & 0 & 4 \\ 
+26 & 1 & 5 \\ 
+27 & 2 & 6 \\ 
+28 & 3 & 0 \\ 
+29 & 4 & 1 \\
+30 & 0 & 2 \\
+31 & 1 & 3 \\
+32 & 2 & 4 \\
+33 & 3 & 5 \\
+34 & 4 & 6 \\
+35 & 0 & 0 \\ 
+36 & 1 & 1 \\ 
+37 & 2 & 2 \\ [1ex] % [1ex] adds vertical space 
+\hline
+\end{tabular} 
+\label{table:nonlin} % is used to refer this table in the text 
+\end{table} 
+
+\end{itemize}
+
 \section*{Problem 9}
 
 \end{document}
