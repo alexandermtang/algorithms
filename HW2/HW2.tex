@@ -35,6 +35,32 @@
 
 \section*{Problem 4}
 
+\begin{verbatim}
+function getMissingDate():
+  boolean puzzles[n] // puzzles is a n-bit array
+  for i in [1..n]:
+    puzzles[i] = 0
+
+  for i in [1..n]:
+    crossword_puzzle puzzle = getPuzzle(i)
+    day = getDay(puzzle);
+    month = getMonth(puzzle)
+    year = getYear(puzzle)
+    puzzles[hash(month, day, year)] = 1
+
+  for i in [1..n]:
+    if puzzles[i] == 0:
+      day = getDay(puzzle)
+      month = getMonth(puzzle)
+      year = getYear(puzzle)
+      return month, day, year
+\end{verbatim}
+
+This algorithm will run in $O(n)$ time and take $n$-bits of space, i.e. $O(n)$ 
+space. Note that \texttt{hash()} can be any function that maps a 1-to-1 
+correspondence between the dates and the indices in the boolean array 
+\texttt{puzzles}.
+
 \section*{Problem 5}
 
 \end{document}
