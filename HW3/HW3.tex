@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{enumerate}
+\usepackage{algorithmic}
 
 \title{CS 344 Assignment 3}
 \author{Craig Perkins, Alex Tang, Steve Grzenda}
@@ -12,6 +13,26 @@
 \maketitle
 
 \section*{Problem 1}
+Assume we have a function Dist(a,b) which returns the distance between two sets of coordinates using the distance formula in constant time and a function Min(a,b,c,...) which can return the minimum val of the input in constant time \\
+
+\subsection{Algorithm}
+\tiny
+\noindent function Takeshi(red[], blue[]): \\
+  \indent redIndex = 0; blueIndex = 0; \\
+  \indent minRope = Dist(red[0], blue[0]); \\
+  \indent while (redIndex $\neq$ length(red) AND blueIndex $\neq$ length(blue)): \\
+  	\indent \indent if (Dist(red[redIndex+1], blue[blueIndex+1]) $\leq$ minRope): \\
+		\indent \indent \indent redIndex++; blueIndex++;\\
+	\indent \indent else if (Dist(red[redIndex + 1], blue[blueIndex]) $\leq$ minRope):\\
+		\indent \indent \indent redIndex++;\\
+	\indent \indent else if (Dist(red[redIndex], blue[blueIndex+1]) $\leq$ minRope):\\
+		\indent \indent \indent blueIndex++;\\
+	\indent \indent else:\\
+		\indent \indent \indent minRope = Min(Dist(redIndex+1, blue[blueIndex]), Dist(red[redIndex], blue[blueIndex+1]),\\ \indent \indent \indent \indent \indent \indent Dist(red[redIndex+1], blue[blueIndex+1]))\\
+
+\normalsize
+This algorithm will run in worst case $O(n + M) * O(1)$ where n is the length of the red path and m is the length of the blue path and the $O(1)$ is the cost of calling Dist on two points. 
+
 
 \section*{Problem 2}
 \begin{enumerate}[A.]
