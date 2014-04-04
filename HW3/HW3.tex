@@ -22,6 +22,34 @@
 \section*{Problem 3}
 \begin{enumerate}[A.]
     \item
+\begin{verbatim}
+// path is defined as a list from source s to destination t, i.e.:
+//   path = (s, ... , t)
+// path.last() returns the last vertex in the path list, i.e.:
+//   (s, ..., t).last() returns t
+// path.extend(v) means add v to the end of the path, i.e.:
+//   (s1, s2).extend(v) returns (s1, s2, v)
+
+find_all_paths(G, s, t) {
+  all_paths = {}
+  queue = { (s) }
+
+  while (queue is not empty) {
+    path = queue.remove()
+    all_paths.add(path)
+    u = path.last()  // get last vertex of path
+    for every edge(u, v) in G {
+      if (v == t) {
+        all_paths.add(path)  // reached destination t
+      } else {
+        queue.add(path.extend(v))
+      }
+    }
+  }
+
+  return all_paths
+}
+\end{verbatim}
     \item
 \end{enumerate}
 
@@ -29,7 +57,7 @@
 Given the list of international conflicts in the last ten years, create a graph
 where each vertex represents a country. Create an edge between two vertices
 if there is a conflict between those two countries. Next, check if
-it is bipartite using the following algorithm: 
+the graph is bipartite using the following algorithm: 
 
 ALEX WILL FILL THIS IN
 
@@ -37,4 +65,5 @@ If this graph is bipartite, then it is possible to make the assignment. Each of
 the two tables will consist of all the vertices of each disjoint set of the
 bipartite graph.
 
+DO RUNNING TIME
 \end{document}
