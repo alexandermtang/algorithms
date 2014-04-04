@@ -46,8 +46,10 @@ points.
 
 \section*{Problem 2}
 \begin{enumerate}[A.]
-    \item 
-    \item 
+    \item A greedy approach to the chopstick matching problem could be to start by sorting the chopsticks from least length to greatest length. The sorting can be achieved using quick sort which runs in O($n\log n$) time. After sorted we can make the greedy choice to try and pair the first 2 chopsticks in the sorted set. If they can make a pair then we will continue to the next 2 chopsticks and try to make them a pair, otherwise we will take the second from the chopsticks and compare it to the next chopstick in the list. Let the sequence of sorted chopsticks be $\{ l_1,l_2,\ldots,l_i,l_{i+1},\ldots,l_n \}$, the algorithm described will make the greedy choice and compare $l_i$ and $l_{i+1}$. If $l_{i+1}-l_i < k$, then the algorithm will mark them as a pair and then continue with comparing $l_{i+2}$ and $l_{i+3}$, otherwise it will compare $l_{i+1}$ and $l_{i+2}$. In the worst case, no chopsticks will be able to be matched and there will be at most $n-1$ comparisons for a total running time of O($n\log n$) + O($n-1$).
+    
+    Proof of correctness: 
+    \item To solve this variant on the problem, imagine constructing a graph where the nodes of the graph are the chopsticks and a weighted edge exists between 2 nodes if the chopsticks can be paired together. The weight of this edge will correspond to the sum of the weights of the 2 chopsticks. Now the problem has been reduced to finding the maximum weighted matching problem. There is a solution to the maximum weighted matching problem known as the Blossom Algorithm which runs in O($n^2$) time.
 \end{enumerate}
 
 \section*{Problem 3}
