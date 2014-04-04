@@ -97,13 +97,51 @@ function path_exists(G):
 Given the list of international conflicts in the last ten years, create a graph
 where each vertex represents a country. Create an edge between two vertices
 if there is a conflict between those two countries. Next, check if
-the graph is bipartite using the following algorithm: 
+the graph \verb|G| is bipartite using the following algorithm:
 
-ALEX WILL FILL THIS IN
+\begin{verbatim}
+// assume every vertex v can be uniquely referenced by v.number
+function is_bipartite(G):
+  color_array[]  // size of color_array = |V|
+  for i in [1, |V|]:
+    color_array[i] = none
 
-If this graph is bipartite, then it is possible to make the assignment. Each of
-the two tables will consist of all the vertices of each disjoint set of the
-bipartite graph.
+  color = red
+  source = get_any_vertex(G)  // can start check from any vertex in G
+  color_array[source.number] = color
+  queue = { source }
 
-DO RUNNING TIME
+  red_set = {}
+  blue_set = {}
+
+  while (queue is not empty):
+    u = queue.remove()
+
+    if (color is red):
+      color = blue
+      set = blue_set
+    else:
+      color = red
+      set = red_set
+
+    for every edge(u, v) in G:
+      if (color[v.number] is none):
+        color_array[v] = color
+        set.add(v)
+        queue.add(v)
+      else if (color[v.number] is not color):
+        return false
+
+  return true
+
+// upon success,
+// red_set will contain all the vertices colored red
+// blue_set will contain all the vertices colored blue
+\end{verbatim}
+
+If the function returns true, then the graph is bipartite and it is possible to make the assignment. One of
+the tables will contain all of the vertices from \verb|red_set| and the other
+from \verb|blue_set|. Creating a representation of the graph will take
+$O(|V| + |E|)$ and \verb|is_bipartite|, which runs BFS, will run in
+$O(|V| + |E|)$. Overall, the solution will run in linear time.
 \end{document}
