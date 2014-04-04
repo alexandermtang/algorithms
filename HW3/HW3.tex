@@ -14,11 +14,11 @@
 
 \section*{Problem 1}
 Assume we have a function \verb|dist(a,b)| which returns the distance between
-two sets of coordinates using the distance formula in constant time and a
-function \verb|min(a,b)| which returns the minimum between \verb|a| and
-\verb|b| in constant time.
+two pairs of coordinates in constant time and a function \verb|min(a,b)| which
+returns the minimum of \verb|a| and \verb|b| in constant time.
 
 \begin{verbatim}
+// red[], blue[] are arrays of coordinates
 function Takeshi(red[], blue[]):
   redIndex = 0
   blueIndex = 0
