@@ -13,26 +13,36 @@
 \maketitle
 
 \section*{Problem 1}
-Assume we have a function Dist(a,b) which returns the distance between two sets of coordinates using the distance formula in constant time and a function Min(a,b,c,...) which can return the minimum val of the input in constant time \\
+Assume we have a function \verb|dist(a,b)| which returns the distance between
+two sets of coordinates using the distance formula in constant time and a
+function \verb|min(a,b)| which returns the minimum between \verb|a| and
+\verb|b| in constant time.
 
-\subsection{Algorithm}
-\tiny
-\noindent function Takeshi(red[], blue[]): \\
-  \indent redIndex = 0; blueIndex = 0; \\
-  \indent minRope = Dist(red[0], blue[0]); \\
-  \indent while (redIndex $\neq$ length(red) AND blueIndex $\neq$ length(blue)): \\
-  	\indent \indent if (Dist(red[redIndex+1], blue[blueIndex+1]) $\leq$ minRope): \\
-		\indent \indent \indent redIndex++; blueIndex++;\\
-	\indent \indent else if (Dist(red[redIndex + 1], blue[blueIndex]) $\leq$ minRope):\\
-		\indent \indent \indent redIndex++;\\
-	\indent \indent else if (Dist(red[redIndex], blue[blueIndex+1]) $\leq$ minRope):\\
-		\indent \indent \indent blueIndex++;\\
-	\indent \indent else:\\
-		\indent \indent \indent minRope = Min(Dist(redIndex+1, blue[blueIndex]), Dist(red[redIndex], blue[blueIndex+1]),\\ \indent \indent \indent \indent \indent \indent Dist(red[redIndex+1], blue[blueIndex+1]))\\
+\begin{verbatim}
+function Takeshi(red[], blue[]):
+  redIndex = 0
+  blueIndex = 0
+  minRope = dist(red[0], blue[0])
+  while (redIndex != length(red) and blueIndex != length(blue)):
+    bothMove  = dist(red[redIndex + 1], blue[blueIndex + 1])
+    redMoves  = dist(red[redIndex + 1], blue[blueIndex])
+    blueMoves = dist(red[redIndex], blue[blueIndex + 1])
+    if (bothMove <= minRope):
+      redIndex++
+      blueIndex++
+    else if (redMoves <= minRope):
+      redIndex++
+    else if (blueMoves <= minRope):
+      blueIndex++
+    else:
+      minRope = min(redMoves, blueMoves)
+  return minRope
+\end{verbatim}
 
-\normalsize
-This algorithm will run in worst case $O(n + M) * O(1)$ where n is the length of the red path and m is the length of the blue path and the $O(1)$ is the cost of calling Dist on two points. 
-
+This algorithm will return minimum length of rope needed. It will run in worst
+case $O(n + m) * O(1)$ where $n$ is the length of the red path and $m$ is the length
+of the blue path and the $O(1)$ is the cost of calling \verb|dist| on two
+points.
 
 \section*{Problem 2}
 \begin{enumerate}[A.]
@@ -42,7 +52,11 @@ This algorithm will run in worst case $O(n + M) * O(1)$ where n is the length of
 
 \section*{Problem 3}
 \begin{enumerate}[A.]
-    \item
+    \item In the worse case, if there is an exponential number of paths,
+      then in order to output all of them, you will need an exponential amount
+      of time. If you were to save these paths, it would take exponential
+      memory space. The following algorithm returns a set of all the paths
+      from \verb|s| to \verb|t|:
 \begin{verbatim}
 // path is defined as a list from source s to destination t, i.e.:
 //   path = (s, ... , t)
@@ -51,27 +65,32 @@ This algorithm will run in worst case $O(n + M) * O(1)$ where n is the length of
 // path.extend(v) means add v to the end of the path, i.e.:
 //   (s1, s2).extend(v) returns (s1, s2, v)
 
-find_all_paths(G, s, t) {
+function find_all_paths(G, s, t):
   all_paths = {}
   queue = { (s) }
 
-  while (queue is not empty) {
+  while (queue is not empty):
     path = queue.remove()
-    all_paths.add(path)
-    u = path.last()  // get last vertex of path
-    for every edge(u, v) in G {
-      if (v == t) {
+    u = path.last()
+    for every edge(u, v) in G:
+      if (v == t):
         all_paths.add(path)  // reached destination t
-      } else {
+      else:
         queue.add(path.extend(v))
-      }
-    }
-  }
-
   return all_paths
-}
 \end{verbatim}
-    \item
+    \item Topologically sort the graph and check if there is an edge between
+      each consecutive vertex. This algorithm will run in $O(|V| + |E|)$.
+\begin{verbatim}
+function path_exists(G):
+  H = topological_sort(G)
+  // vertexes are now labeled 1, 2, ..., n in topological order
+  for i in [1, n - 1]:
+    if (edge(i, i+1) does not exist in G):
+      return false
+  return true
+\end{verbatim}
+
 \end{enumerate}
 
 \section*{Problem 4}
