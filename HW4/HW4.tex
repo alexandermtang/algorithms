@@ -14,8 +14,53 @@
 
 \section*{Problem 1}
 \begin{enumerate}[A.]
-    \item
-    \item
+    \item Another way to think of this problem is to present the problem in
+      terms of a graph $G$, where each vertex is an intersection and each edge is a
+      street. This way, a dead end is viewed as a vertex with degree 1 and a
+      $n$-way intersection, where $n$ is odd, is a vertex with odd degree. Then,
+      the proof that an Eulerian circuit $C$ exists if and only if every vertex has
+      even degree goes as follows: \\
+      $\Rightarrow$ If an Eulerian circuit $C$ exists, then every vertex has even degree. \\
+      Pick any vertex $v$. Then $C$ contains all the edges adjacent to $v$. As we
+      traverse $C$, we must enter and leave $v$ the same number of times, so
+      $\deg(v)$ must be even. \\
+      $\Leftarrow$ If every vertex has even degree, then an Eulerian circuit $C$ exists. \\
+      We prove this by induction on the number of edges in $G$. \\
+      Base case: The smallest possible graph where every vertex has even degree
+      is a graph with two vertices with two edges between them. In the case of
+      simple graphs, the smallest possible graph is a triangle, i.e., a
+      complete graph with 3 vertices. \\
+      Let the induction hypothesis be: Let $H$ be a connected graph with
+      $\leq k$ edges. \\
+      If every vertex of $H$ has even degree, then $H$ contains
+      an Eulerian circuit. Consider $G$, a graph with $k+1$ edges, where every
+      vertex has even degree. Since $G$ has no vertices with odd degree, G is
+      not a tree so it must contain a cycle $W$. Remove the edges of $W$ from $G$ to
+      create a graph $G'$ which may be disconnected consisting of connected components
+      $G'_{1}, G'_{2}, \ldots, G'_{k}$. Observe that removing the edges of
+      $W$ causes each vertex in $W$ to lose an even number of edges so the parity
+      of each vertex is unchanged in $G'$. By the induction hypothesis, each of
+      $G'_{1}, G'_{2}, \ldots, G'_{k}$ must contain its own Eulerian circuit
+      $W'_{1}, W'_{2}, \ldots, W'_{k}$. We can now to construct an Eulerian circuit for
+      $G$. Pick any vertex $v$ from $W$. Traverse along $W$ until we reach a vertex $v_{i}$
+      belonging to a connected component $G'_{i}$. Then traverse along the Eulerian
+      circuit $W'_{i}$ until we return to $v_{i}$. Repeat this along $W$ until we return to
+      $v$. This completes an Eulerian circuit in $G$.
+    \item To find an Eulerian circuit, use Hierholzer's algorithm which goes as
+      follows:
+      \begin{enumerate}[1.]
+          \item Make sure every vertex in the graph $G$ has even degree.
+          \item Pick any vertex $v$.
+          \item Starting at $v$, follow any cycle of edges until you return to $v$,
+            marking each edge as visited. If this cycle covers all the edges in
+            $G$, then you are done.
+          \item If not, then as long as there exists a vertex $u$ that belongs
+            to the current circuit but has adjacent edges that are not visited,
+            start another cycle from $u$ and joining this cycle to the previous
+            circuit.
+          \item Repeat until all edges are visited.
+      \end{enumerate}
+      Hierholzer's algorithm will run in $O(|E|)$ time.
 \end{enumerate}
 
 \section*{Problem 2}
