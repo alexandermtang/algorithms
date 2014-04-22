@@ -25,30 +25,39 @@
 \end{enumerate}
 
 \section*{Problem 3}
-\noindent Input: Graph G = (V,E)\\
-\noindent Output: For all vertices u reachable from s, dist(u) is set to the distance from s to u\\
+\begin{verbatim}
+Input:  Graph G = (V,E)
+Output: For all vertices u reachable from s,
+        dist(u) is set to the distance from s to u
 
-\noindent for all $u \in V$:\\
-\indent dist(u) = $\infty$\\
-\indent prev(u) = nil\\
-\noindent dist(s) = 0\\
-\noindent H = makequeue(V)\\
-\noindent while H is not empty:\\
-\indent u = deletemin(H)\\
-\indent for all edges $(u,v) \in E$: \\
-\indent \indent if v != destination:\\
-\indent \indent \indent if dist(v) $>$ dist(u) + getTime(u,v) + 1\\
-\indent \indent \indent \indent dist(v) = dist(u) + getTime(u,v) + 1\\
-\indent \indent \indent \indent prev(v) = u\\
-\indent \indent \indent \indent decreaseKey(H,v)\\
-\indent \indent else\\
-\indent \indent \indent if dist(v) $>$ dist(u) + getTime(u,v)\\
-\indent \indent \indent \indent dist(v) = dist(u) + getTime(u,v)\\
-\indent \indent \indent \indent prev(v) = u\\
-\indent \indent \indent \indent decreaseKey(H,v)\\
-\noindent end\\
-Where getTime finds the next available truck leaving on the edge and finds the difference between departure and arrival. We are assuming that lookup of the times and adding them will take constant time. The reason for the if/else statement is that if the vertex v is the destination then we will not be taking the extra hour to transfer between trucks\\
-This algorithm is exactly Dijkstra's algorithm and will run in $O((|V| + |E|)log|V|)$ assuming we use a binary heap as we do not know any information about the density of the graph. The proof of correctness is the proof of dijkstra's algorithm. By relaxing the edges we guarantee that each time we update edges it will be the optimal distance at that point.\\
+for all u in V:
+  dist(u) = INFINITY
+  prev(u) = nil
+
+dist(s) = 0
+H = makequeue(V)
+
+while H is not empty:
+  u = deletemin(H)
+  for all edges (u,v) in E:
+    if v != destination:
+      if dist(v) > dist(u) + getTime(u,v) + 1:
+        dist(v) = dist(u) + getTime(u,v) + 1
+        prev(v) = u
+        decreaseKey(H,v)
+    else:
+      if dist(v) > dist(u) + getTime(u,v):
+        dist(v) = dist(u) + getTime(u,v)
+        prev(v) = u
+        decreaseKey(H,v)
+\end{verbatim}
+
+Where \verb|getTime()| finds the next available truck leaving on the edge and finds the difference between departure and arrival.
+We are assuming that lookup of the times and adding them will take constant time.
+The reason for the if/else statement is that if the vertex $v$ is the destination then we will not be taking the extra hour to transfer between trucks.
+This algorithm is exactly Dijkstra's algorithm and will run in $O((|V| + |E|)log|V|)$ assuming we use a binary heap as we do not know any information about the density of the graph.
+The proof of correctness is the proof of Dijkstra's algorithm.
+By relaxing the edges we guarantee that each time we update edges it will be the optimal distance at that point.
 
 \section*{Problem 4}
 \begin{enumerate}[A.]
