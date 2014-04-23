@@ -65,7 +65,8 @@
 
 \section*{Problem 2}
 \begin{enumerate}[A.]
-    \item
+    \item To solve the problem of starting with an amount of substance A and producing the max amount of substance B given a conversion matrix and n substances. We can construct a complete directed graph where the nodes of the graph are the substances and the edge from chemical A to chemical B has a weight equal to that of how much of chemical A it takes to produce 1 of chemical B. To find the optimal sequence of conversions to produce the most of chemical B we want to find the min product along a path on the graph from A to B. This problem can be solved as a modification on a typical Dijkstra's algorithm by computing product along paths instead of the sum along paths. Once the algorithm terminates after each node has been labeled  
+    
     \item
 \end{enumerate}
 
