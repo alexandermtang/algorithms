@@ -65,9 +65,14 @@
 
 \section*{Problem 2}
 \begin{enumerate}[A.]
-    \item To solve the problem of starting with an amount of substance A and producing the max amount of substance B given a conversion matrix and n substances. We can construct a complete directed graph where the nodes of the graph are the substances and the edge from chemical A to chemical B has a weight equal to that of how much of chemical A it takes to produce 1 of chemical B. To find the optimal sequence of conversions to produce the most of chemical B we want to find the min product along a path on the graph from A to B. This problem can be solved as a modification on a typical Dijkstra's algorithm by computing product along paths instead of the sum along paths. Once the algorithm terminates after each node has been labeled  
+    \item To solve the problem of starting with an amount of substance A and producing the max amount of substance B given a conversion matrix and n substances. We can construct a complete directed graph where the nodes of the graph are the substances and the edge from chemical A to chemical B has a weight equal to that of how much of chemical A it takes to produce 1 of chemical B. To find the optimal sequence of conversions to produce the most of chemical B we want to find the max product along a path on the graph from A to B. This problem can be solved as a modification on a typical Dijkstra's algorithm by computing product along paths instead of the sum along paths. Once the algorithm terminates after each node has been labeled with the optimal way of producing chemical B from chemical A. The algorithm differs from Dijkstra's in that the initiation starts by labeling the source chemical as 1 and the rest as 0. Also Node B's label gets updated if $w_i\cdot R_{iB} > w_b$, which means Chemical B's label is updated if we can find a sequence to produce more of B from A. After the algorithm terminates the label of B will be the maximum way to convert A to B and you can follow the predecessors of B to A to find the optimal sequence of conversions.
     
-    \item
+    Since the graph is dense, $|E| = |V|^2$, it is best to use the fibonacci heap implementation of Dijkstra's algorithm. The overall runtime will be on the order of $O(|V|\log |V| + |E|) = O(|V|^2) = O(n^2)$
+    
+    \item In order to find a positive product cycle, we can run a modified Bellman-Ford algorithm. The algorithm will loop n times instead of n - 1 times. The modification on Bellman-Ford will be the same as the modification on Dijkstra's as described above. If the products do not converge after the n-1-th iteration, then a positive product cycle exists.
+    
+	The algorithm described above has a total runtime of $O(|V||E|) = O(|V|^3) = O(n^3)$.   
+    
 \end{enumerate}
 
 \section*{Problem 3}
@@ -101,13 +106,13 @@ while H is not empty:
 Where \verb|getTime()| finds the next available truck leaving on the edge and finds the difference between departure and arrival.
 We are assuming that lookup of the times and adding them will take constant time.
 The reason for the if/else statement is that if the vertex $v$ is the destination then we will not be taking the extra hour to transfer between trucks.
-This algorithm is exactly Dijkstra's algorithm and will run in $O((|V| + |E|)log|V|)$ assuming we use a binary heap as we do not know any information about the density of the graph.
+This algorithm is an implantation of Dijkstra's algorithm and will run in $O(|V|\log |V| + |E|)$ assuming we use a fibonacci heap as we do not know anything about the density of the trucks.
 The proof of correctness is the proof of Dijkstra's algorithm.
 By relaxing the edges we guarantee that each time we update edges it will be the optimal distance at that point.
 
 \section*{Problem 4}
 \begin{enumerate}[A.]
-    \item
+    \item Ye Olde Maester will suggest a modified version version of the mighty Floyd-Warshall algorithm. In the modified version the Maester does not care about the shortest paths, however, wants to find the max of the strengths of the preference sequences. As such he suggests that the subproblems for the optimal solution will be as follows: $t^*[i,j,k] = \textrm{max}\{ \textrm{min}\{ t^*[i,j,k-1],t^*[k,j,k-1] \},t^*[i,j,k-1] \}$. The runtime of this algorithm will be on the order of $O(|V|^3)$ and the underlying data structure needed will be 2 matrices of size $|V| \times |V|$. 
     \item
       \begin{enumerate}[i.]
           \item
