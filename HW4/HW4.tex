@@ -108,6 +108,43 @@ By relaxing the edges we guarantee that each time we update edges it will be the
 \begin{enumerate}[A.]
     \item
     \item
+      \begin{enumerate}[i.]
+          \item
+            \begin{verbatim}
+            d(BS,SC) = 17
+            d(BS,LT) = 19
+            d(BS,BT) = 24
+            d(BS,JL) = 29
+
+            d(SC,BS) = 28
+            d(SC,LT) = 15
+            d(SC,BT) = 14
+            d(SC,JL) = 12
+
+            d(LT,BS) = 26
+            d(LT,SC) = 30
+            d(LT,BT) = 22
+            d(LT,JL) = 20
+
+            d(BT,BS) = 21
+            d(BT,SC) = 26
+            d(BT,LT) = 23
+            d(BT,JL) = 27
+
+            d(JL,BS) = 16
+            d(JL,SC) = 33
+            d(JL,LT) = 25
+            d(JL,BT) = 13
+            \end{verbatim}
+
+            We created a graph of 5 vertices labeled \verb|BS|, \verb|SC|, \verb|LT|, \verb|BT|, and \verb|JL|.
+            There was a directed edge with weight \verb|d(A,B)| from \verb|A| to \verb|B| if
+            \verb|d(A,B) > d(B,A)|. Using this graph, we identified several cycles,
+            indicating there is no undisputed winner.
+          \item
+
+          \item
+      \end{enumerate}
 \end{enumerate}
 
 \end{document}
