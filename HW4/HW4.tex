@@ -148,8 +148,34 @@ By relaxing the edges we guarantee that each time we update edges it will be the
             \verb|d(A,B) > d(B,A)|. Using this graph, we identified several cycles,
             indicating there is no undisputed winner.
           \item
+           \begin{verbatim}
+            $t^*$(BS,SC) = 29
+            $t^*$(BS,LT) = 25
+            $t^*$(BS,BT) = 24
+            $t^*$(BS,JL) = 29
 
-          \item
+            $t^*$(SC,BS) = 28
+            $t^*$(SC,LT) = 25
+            $t^*$(SC,BT) = 24
+            $t^*$(SC,JL) = 28
+
+            $t^*$(LT,BS) = 28
+            $t^*$(LT,SC) = 30
+            $t^*$(LT,BT) = 24
+            $t^*$(LT,JL) = 28
+
+            $t^*$(BT,BS) = 26
+            $t^*$(BT,SC) = 27
+            $t^*$(BT,LT) = 25
+            $t^*$(BT,JL) = 27
+
+            $t^*$(JL,BS) = 28
+            $t^*$(JL,SC) = 33
+            $t^*$(JL,LT) = 25
+            $t^*$(JL,BT) = 24
+            \end{verbatim}
+
+          \item Brienne of Tarth comes out as the overall winner because she has a row of 1's in the T matrix. After discovering that she is the winner, her node gets plucked from the graph and all edges pointing to or away from her get removed from the graph and the algorithm is repeated with the remaining nodes. Loras Tyrell comes in a respectable second, followed by the honorable Barristan Selmy. In fourth we have Jaime Lannister and Sandor Clegane comes in last.
       \end{enumerate}
 \end{enumerate}
 
