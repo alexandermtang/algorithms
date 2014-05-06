@@ -27,17 +27,20 @@
 
 \section*{Problem 3}
 \begin{enumerate}[1.]
-    \item 
-    \item 
-    \item 
-    \item 
+    \item The problem is that they need to find the maximum number of edges between two nodes by placing m pairs into the two nodes, or "tables". The cost function is $max \sum e(x,y)$ for all x and y
+    \item A local search approach would be to start with 1 person in table A and the rest in table B. Move 1 person over to table A and if it improves the cost then keep that person there permanently. Repeat this process until there is no improvement.\\
+    This is a 2-approximation polynomial time solution because in the worst case (where everyone hates everyone) the maximum number of edges is m where $ m = \frac{n(n-1)}{2}$. The local search with stop when each side has $\frac{n}{2}$ people so the cost is approximately $\frac{m}{2}$.
+    \item A greedy solution would be to find the person with the most amount of hated people. Put that person on table A and all his enemies on table B. Repeat on all unassigned people until none are left.\\
+    This is a 2-approximation polynomial time solution for the same reasons listed above 
+    \item A randomized approach would be to queue up all the names and alternately assign to table A and B.\\
+    This would be a 2-approximation polynomial time solution because with $\frac{n}{2}$ people on either side the number of edges would be about $\frac{m}{2}$
 \end{enumerate}
 
 \section*{Problem 4}
 \begin{enumerate}[a.]
-    \item
-    \item
-    \item
+    \item One way to do this would be to use Karger's algorithm which is a randomized algorithm that contracts edges of a graph. Since it is randomized it does not always work; however since it runs in polynomial time we can run it multiple times and take the min of the min cuts. 
+    \item A solution to this problem would be to block all roads in between the cities. Then queue up all the edges. Pop an edge and return it to the graph. Perform 3 DFS's (A to B, A to C, B to C). If a DFS succeeds then that road must be blocked. If it does not succeed then the edge can be returned to the graph. Repeat until the queue is empty.
+    \item Once again remove all edges. Add in one edge and perform Floyd Warshall. If the number of infinities equals m-1 then stop. Else save the minimum number of infinities that is $\ge m$. Continue adding in edges until there is no more improvement
     \item
 \end{enumerate}
 
