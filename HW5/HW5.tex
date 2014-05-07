@@ -14,31 +14,59 @@
 
 \section*{Problem 1}
 \begin{enumerate}[(a)]
-    \item 
-    \item 
-    \item
+    \item Assuming the function $s$ satisfies metric requirements, the
+      algorithm for this problem is the same as the k-Clustering
+      approximation algorithm using $s(u_i, u_j)$ as the distance function. The
+      algorithm goes as follows (taken from the textbook): \\
+      \begin{verbatim}
+Pick any point u_1 as the first cluster center
+for i = 2 to k:
+  Let u_i be the point that is farthest from u_1, ... , u_i-1
+    based on the function s
+return k clusters
+      \end{verbatim}
+      The k clusters that this function returns will be the k groups that
+      satisfy the optimality requirement mentioned in the problem. Assign the rest
+      of the users to the closest cluster.
+    \item Each time you find a cluster center $u_i$, you need to create a max heap 
+      for all other non-cluster vertices $u_1, \ldots, u_{i-1}$ to determine the next cluster center
+      to pick. The first iteration will require calculating one max heap for $u_1$, the
+      second iteration will require calculating calculating two max heaps for $u_1$ and $u_2$, so the
+      $k$-th iteration will require calculating $k-1$ max heaps for $u_1, \ldots, u_{i-1}$. This is a total of
+      $1 + 2 + \cdots + (k-1) \approx k^2$ calculations of max heaps. Each max heap calculation requires
+      $n logn$ time for a total running time of $O(k^2n log n)$.
+
+    \item The k clusters will be as far away from each other so any two users that
+      are not centers cannot possibly farther away from each other than the cluster
+      centers. Therefore, this will minimize the similarity of the most similar
+      pair of users that have been assigned to different groups.
 \end{enumerate}
 
 \section*{Problem 2}
 \begin{enumerate}[A.]
-    \item 
-    \item 
+    \item For $d = 2$, the problem reduces to finding a RUDRATA-PATH in the graph.
+      The MST for $d = 2$ is the same as a RUDRATA-PATH throughout the sensor nodes network,
+      with the two endpoint nodes of the path having degree = 1 and every non-endpoint intermediate node
+      having degree = 2.
+      The RUDRATA-PATH problem is NP-complete so this problem is too.
+    \item Solving TSP is the same as solving RUDRATA-PATH so
+      it will solve this problem too.
 \end{enumerate}
 
 \section*{Problem 3}
 \begin{enumerate}[1.]
-    \item The problem is that they need to find the maximum number of edges between two nodes by placing m pairs into the two nodes, or "tables". The cost function is $max \sum e(x,y)$ for all x and y
-    \item A local search approach would be to start with 1 person in table A and the rest in table B. Move 1 person over to table A and if it improves the cost then keep that person there permanently. Repeat this process until there is no improvement.\\
-    This is a 2-approximation polynomial time solution because in the worst case (where everyone hates everyone) the maximum number of edges is m where $ m = \frac{n(n-1)}{2}$. The local search with stop when each side has $\frac{n}{2}$ people so the cost is approximately $\frac{m}{2}$.
-    \item A greedy solution would be to find the person with the most amount of hated people. Put that person on table A and all his enemies on table B. Repeat on all unassigned people until none are left.\\
-    This is a 2-approximation polynomial time solution for the same reasons listed above 
-    \item A randomized approach would be to queue up all the names and alternately assign to table A and B.\\
-    This would be a 2-approximation polynomial time solution because with $\frac{n}{2}$ people on either side the number of edges would be about $\frac{m}{2}$
+  \item The problem is that they need to find the maximum number of edges between two sets of vertices, similar to a bipartite graph. Let these two sets be $U$ and $V$. Then the cost function is $\sum\limits_{x \in U, y \in V} e(x,y)$.
+  \item A local search approach would be to start with 1 person in table A and the rest in table B. Move 1 person over to table A and if it improves the cost then keep that person there permanently. Repeat this process until there is no improvement.\\
+  This is a 2-approximation polynomial time solution because the optimal solution would have cost = $m$. In the worst case (where everyone hates everyone), the graph is a complete graph with number of edges $m = \frac{n(n-1)}{2}$. The search will stop when each table has $\frac{n}{2}$ people with cost $ = \frac{m}{2}$ edges between them.
+  \item A greedy solution would be to find the person who hates the most people. Put that person in table A. Pick the next hateful person and place him in table B. Repeat until everyone is placed at a table. \\
+  This is a 2-approximation polynomial time solution for the same reasons as part 2.
+  \item A randomized approach would be to queue up all the names and alternately assign to table A and B.\\
+  This is a 2-approximation polynomial time solution for the same reasons as part 2.
 \end{enumerate}
 
 \section*{Problem 4}
 \begin{enumerate}[a.]
-    \item One way to do this would be to use Karger's algorithm which is a randomized algorithm that contracts edges of a graph. Since it is randomized it does not always work; however since it runs in polynomial time we can run it multiple times and take the min of the min cuts. 
+    \item One way to do this would be to use Karger's algorithm which is a randomized algorithm that contracts edges of a graph. Since it is randomized it does not always work; however since it runs in polynomial time we can run it multiple times and take the min of the min cuts. The edges in the min cut between the two cities would be where the soldiers need to be placed.
     \item A solution to this problem would be to block all roads in between the cities. Then queue up all the edges. Pop an edge and return it to the graph. Perform 3 DFS's (A to B, A to C, B to C). If a DFS succeeds then that road must be blocked. If it does not succeed then the edge can be returned to the graph. Repeat until the queue is empty.
     \item Once again remove all edges. Add in one edge and perform Floyd Warshall. If the number of infinities equals m-1 then stop. Else save the minimum number of infinities that is $\ge m$. Continue adding in edges until there is no more improvement
     \item
