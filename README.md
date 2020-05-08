@@ -2,6 +2,6 @@ CS344 Homework
 --------------
 
 Contributors:
+- Alexander Tang
 - Craig Perkins
-- Alex Tang
 - Steve Grzenda
